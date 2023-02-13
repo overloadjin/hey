@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hi mah Friend/s</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap");
+
+      * {
+        font-family: "Poppins", sans-serif;
+      }
+      .button-center {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 90vh;
+      }
+      .show-modal {
+        background: #ff4742;
+        border: 1px solid #ff4742;
+        border-radius: 6px;
+        box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
+        box-sizing: border-box;
+        color: #ffffff;
+        cursor: pointer;
+        display: inline-block;
+        font-family: nunito, roboto, proxima-nova, "proxima nova", sans-serif;
+        font-size: 16px;
+        font-weight: 800;
+        line-height: 16px;
+        min-height: 40px;
+        outline: 0;
+        padding: 12px 14px;
+        text-align: center;
+        text-rendering: geometricprecision;
+        text-transform: none;
+        user-select: none;
+        -webkit-user-select: none;
+        touch-action: manipulation;
+        vertical-align: middle;
+      }
+
+      .show-modal:hover,
+      .show-modal:active {
+        background-color: initial;
+        background-position: 0 0;
+        color: #ff4742;
+      }
+
+      .show-modal:active {
+        opacity: 0.5;
+      }
+
+      .modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 1;
+      }
+
+      .message1,
+      .message2,
+      .message3,
+      .message4 {
+        background-color: white;
+      border-radius: 10px;
+        padding: 100px;
+        position: absolute;
+        top: 50%;
+       
+        left: 50%;
+        text-align: center;
+        width: 300px;
+        text-transform: uppercase;
+        font-size: 19px;
+        transform: translate(-50%, -50%);
+      }
+
+      .close-modal,
+      .next-btn {
+        border: 1px solid black;
+        background-color: white;
+        padding: 5px 10px;
+        position: absolute;
+        bottom: 20px;
+        right: 20px;
+        cursor: pointer;
+      }
+
+      .close-modal {
+        right: 80px;
+      }
+
+      .heart {
+        animation: heart-beat 1s infinite;
+      }
+
+      @keyframes heart-beat {
+        0% {
+          transform: scale(1);
+        }
+        20% {
+          transform: scale(1.1);
+        }
+        40% {
+          transform: scale(1);
+        }
+      }
+      .heart {
+        position: fixed;
+        top: -1vh;
+        font-size: 2rem;
+        transform: translateY(0);
+        animation: fall 3s linear forwards;
+      }
+
+      @keyframes fall {
+        to {
+          transform: translateY(105vh);
+        }
+      }
+      .from{
+        position: absolute;
+        padding: 10px 0 10px 0;
+        bottom: 0;
+        font-size: 12px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="button-center">
+      <button class="show-modal">Don't hesitate to click</button>
+    </div>
+    <div class="modal">
+      <div class="message1">I hope you're doing okay.</div>
+      <div class="message2" style="display: none">
+        You are not alone friend.
+      </div>
+      <div class="message3" style="display: none">
+        Even if you have a problem you will overcome it.
+      </div>
+      <div
+        class="message4"
+        style="
+          display: none;
+          background-image: url(https://img.freepik.com/free-vector/blurred-valentine-s-day-wallpaper_23-2148819570.jpg?w=826&t=st=1676286563~exp=1676287163~hmac=eb794c0ba3cfca42e825dcbee997cfcbbf54ee8009714a7eb40f0d59a43d784c);
+          background-size: cover;
+        "
+      >
+        <p>
+            Love is an action, not just a feeling. It's the little things you do every day to show someone you care.<br>
+            Happy Valentine's Day mah
+          friend/s
+          <span class="from">From: Anonymous Classmate</span>
+        </p>
+        <div id="heart-container"></div>
+        <script>
+          function createHeart() {
+            const heart = document.createElement("div");
+            heart.classList.add("heart");
+
+            heart.style.left = Math.random() * 100 + "vw";
+
+            heart.style.animationDuration = Math.random() * 2 + 3 + "s";
+
+            heart.innerText = "🧡";
+
+            document.getElementById("heart-container").appendChild(heart);
+
+            setTimeout(() => {
+              heart.remove();
+            }, 5000);
+          }
+
+          setInterval(() => {
+            createHeart();
+          }, 500);
+        </script>
+      </div>
+      <button class="close-modal">Close</button>
+      <button class="next-btn">Next</button>
+    </div>
+    <script>
+      const modal = document.querySelector(".modal");
+      const trigger = document.querySelector(".show-modal");
+      const close = document.querySelector(".close-modal");
+      const message1 = document.querySelector(".message1");
+      const nextBtn = document.querySelector(".next-btn");
+      const message2 = document.querySelector(".message2");
+      const message3 = document.querySelector(".message3");
+      const message4 = document.querySelector(".message4");
+
+      let displayMessage = 1;
+
+      trigger.addEventListener("click", function () {
+        modal.style.display = "block";
+        message1.style.display = "block";
+      });
+
+      nextBtn.addEventListener("click", function () {
+        if (displayMessage === 1) {
+          message1.style.display = "none";
+          message2.style.display = "block";
+          displayMessage = 2;
+        } else if (displayMessage === 2) {
+          message2.style.display = "none";
+          message3.style.display = "block";
+          displayMessage = 3;
+        } else if (displayMessage === 3) {
+          message3.style.display = "none";
+          message4.style.display = "block";
+          displayMessage = 4;
+          nextBtn.style.display = "none";
+        }
+      });
+
+      close.addEventListener("click", function () {
+        modal.style.display = "none";
+        message1.style.display = "block";
+        message2.style.display = "none";
+        message3.style.display = "none";
+        message4.style.display = "none";
+        nextBtn.style.display = "block";
+        displayMessage = 1;
+      });
+
+      window.addEventListener("click", function (event) {
+        if (event.target == modal) {
+          modal.style.display = "none";
+          message1.style.display = "block";
+          message2.style.display = "none";
+          message3.style.display = "none";
+          message4.style.display = "none";
+          nextBtn.style.display = "block";
+          displayMessage = 1;
+        }
+      });
+    </script>
+  </body>
+</html>
